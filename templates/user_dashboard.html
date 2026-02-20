@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <style>
+        body { font-family: Arial; margin: 40px;}
+        table { border-collapse: collapse;width: 60%;}
+        th, td { border: 1px solid #ccc; padding: 8px;}
+        th {background: #f2f2f2;}
+        a { margin-right: 10px;}
+    </style>
+    
+</head>
+<body>
+    <h2>your expenses </h2>
+
+    <a href="/add-expense">Expense </a>
+    <a href="/logout">Logout</a>
+
+    <table>
+        <tr>
+            <th>Amount</th>
+            <th>Category</th>
+            <th>Date</th>
+        </tr>
+
+        {% for e in expenses %}
+        <tr>
+            <td>{{e.amount }}</td>
+            <td>{{e.title }}</td>
+            <td>{{e.date }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    <h2>Total spent: ₹{{ total }}</h2>
+    <h3>This month: ₹{{monthly_total }}</h3>
+    <h3> This year: ₹ {{yearly_total }}</h3>                
+   
+    <h3>Remaining: ₹{{remaining}}</h3> 
+    <form method="POST" action="/update-budget">
+        <label>ENTER MONTHLY BUDGET:</label>
+        <input type="number" name="budget" step="0.01" required>
+        <button type="submit">save budget</button>
+
+    </form>             
+    <p>YOUR BUDGET: ₹{{ budget }}</p>
+    <p>REMAINING: ₹{{ remaining }}</p>
+                     
+</body>
+</html>
